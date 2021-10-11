@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	symlinks = false
+	ignorecase = true
+	sharedrepository = 2
+[receive]
+	denyNonFastforwards = true
+[remote "h2CrudJpaHibernate"]
+	url = https://github.com/RolandOroz/h2-crud-jpa-hibernate.git
+	fetch = +refs/heads/*:refs/remotes/h2CrudJpaHibernate/*

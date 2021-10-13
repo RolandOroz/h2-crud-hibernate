@@ -14,8 +14,6 @@ import java.time.LocalDate;
 @Table(name = "posts")
 public class Post {
 
-    @Embedded
-    private Newspost newspost;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -29,21 +27,10 @@ public class Post {
 
 
 
-  /*  @Override
+    @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", newstitle='" + newstitle + '\'' +
-                ", fpost='" + fpost + '\'' +
-                ", cdate=" + cdate +
-                '}';
-    } */
-
-    @Override
-    public String toString() {
-        return  "Post{" +
-                " newspost=" + newspost +
-                ", id=" + id +
                 ", newstitle='" + newstitle + '\'' +
                 ", fpost='" + fpost + '\'' +
                 ", cdate=" + cdate +

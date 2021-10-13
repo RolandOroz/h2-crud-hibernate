@@ -1,6 +1,6 @@
 package com.roland.oroz.h2crud.controller;
 
-//import com.roland.oroz.h2crud.dto.PostDto;
+//import com.roland.oroz.h2crud.dto.PostWrapperDto;
 import com.roland.oroz.h2crud.model.Post;
 import com.roland.oroz.h2crud.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,13 @@ public class PostController {
     }
 
  /*   @GetMapping(value = "/posts", produces = "application/json;charset=UTF-8")
-    public ResponseEntity<PostDto> getAllPost(Post post) throws Exception {
-        PostDto response;
+    public ResponseEntity<PostWrapperDto> getAllPost(Post post) throws Exception {
+        PostWrapperDto response;
         try {
             List<Post> posts = postService.getAllPost();
-            return new ResponseEntity<>(new PostDto(true, posts, "OK"), HttpStatus.OK);
+            return new ResponseEntity<>(new PostWrapperDto(true, posts, "OK"), HttpStatus.OK);
         } catch (Error e) {
-            return new ResponseEntity<>(new PostDto(false, null, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new PostWrapperDto(false, null, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         } */
 
 

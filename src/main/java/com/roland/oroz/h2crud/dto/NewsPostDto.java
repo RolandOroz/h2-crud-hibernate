@@ -12,7 +12,7 @@ public class NewsPostDto {
     @JsonProperty ("success")
     private boolean success;
     @JsonProperty("info")
-    private List<NewsPostDto> newsPostDtoList;
+    private List<NewsPostDto> newsPostDtoList;//???
     @JsonProperty("message")
     private String message;
 

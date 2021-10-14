@@ -32,6 +32,7 @@ public class PostController {
     public List<NewsPostDto> getAllNewsPost() {
         return postService.getAllNewsPost();
     }
+ //   public ResponseEntity<NewsPostDto> getAllNewsPost() throws
 
  /*   @GetMapping(value = "/posts", produces = "application/json;charset=UTF-8")
     public ResponseEntity<PostWrapperDto> getAllPost(Post post) throws Exception {
@@ -70,11 +71,16 @@ public class PostController {
                 .body(this.postService.updatePost(post));
     }
 
-    @DeleteMapping("/posts/{id}")
+  /*  @DeleteMapping("/posts/{id}")
     public HttpStatus deletePost(@PathVariable long id) {
         this.postService.deletePost(id);
         return HttpStatus.OK;
+    }  */
 
+    @DeleteMapping("/posts/{id}")
+    public HttpStatus deletePost (@PathVariable long id) {
+        this.postService.deleteNewsPost(id);
+        return HttpStatus.OK;
     }
 
 }

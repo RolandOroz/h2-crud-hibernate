@@ -48,7 +48,6 @@ public class PostServiceImpl implements PostService {
         return this.postRepository.findAll();
     }
 
-
     //DTO
     @Override
     public List<NewsPostDto> getAllNewsPost() {
@@ -102,6 +101,19 @@ public class PostServiceImpl implements PostService {
         } else {
             throw new ResourceNotFoundException("Record with id: " +
                     postId + " not found.");
+        }
+    }
+    //DTO
+    @Override
+    public void deleteNewsPost(long newsPostId) {
+        Optional<Post> postDataBase = this.postRepository
+                .findById(newsPostId);
+
+        if(postDataBase.isPresent()) {
+            this.postRepository.delete(postDataBase.get());
+        } else {
+            throw new ResourceNotFoundException("Record with id: " +
+                    newsPostId + " not found.");
         }
     }
 }

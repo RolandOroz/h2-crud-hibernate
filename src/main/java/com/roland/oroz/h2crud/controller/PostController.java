@@ -1,6 +1,7 @@
 package com.roland.oroz.h2crud.controller;
 
 //import com.roland.oroz.h2crud.dto.PostWrapperDto;
+import com.roland.oroz.h2crud.dto.NewsPostDto;
 import com.roland.oroz.h2crud.model.Post;
 import com.roland.oroz.h2crud.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,17 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/posts")
+  /*  @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAllPost() {
         return ResponseEntity
                 .ok()
                 .body(postService.getAllPost());
+    } */
+
+    //DTO
+    @GetMapping("/posts")
+    public List<NewsPostDto> getAllNewsPost() {
+        return postService.getAllNewsPost();
     }
 
  /*   @GetMapping(value = "/posts", produces = "application/json;charset=UTF-8")

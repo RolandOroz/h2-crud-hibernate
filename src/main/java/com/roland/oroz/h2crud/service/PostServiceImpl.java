@@ -1,5 +1,6 @@
 package com.roland.oroz.h2crud.service;
 
+import com.roland.oroz.h2crud.dto.NewsPostDto;
 import com.roland.oroz.h2crud.exception.ResourceNotFoundException;
 import com.roland.oroz.h2crud.model.Post;
 import com.roland.oroz.h2crud.repository.PostRepository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -44,6 +46,37 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> getAllPost() {
         return this.postRepository.findAll();
+    }
+
+
+    //DTO
+    @Override
+    public List<NewsPostDto> getAllNewsPost() {
+        return postRepository.findAll()
+                .stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
+
+    }
+
+    //Entity to DTO
+    private NewsPostDto convertEntityToDto(Post post) {
+        NewsPostDto newsPostDto = new NewsPostDto();
+        newsPostDto.setId(post.getId());
+        newsPostDto.setNewstitle(post.getNewstitle());
+        newsPostDto.setFpost(post.getFpost());
+        newsPostDto.setCdate(post.getCdate());
+        return newsPostDto;
+    }
+
+    //DTO to Entity
+    private Post convertDtoToEntity(NewsPostDto newsPostDto) {
+        Post post = new Post();
+        post.setId(newsPostDto.getId());
+        post.setNewstitle(newsPostDto.getNewstitle());
+        post.setFpost(newsPostDto.getFpost());
+        post.setCdate(newsPostDto.getCdate());
+        return post;
     }
 
     @Override

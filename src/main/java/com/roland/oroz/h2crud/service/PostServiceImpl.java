@@ -1,7 +1,7 @@
 package com.roland.oroz.h2crud.service;
 
 import com.roland.oroz.h2crud.dto.NewsPostDto;
-import com.roland.oroz.h2crud.dto.PostWrapperDto;
+import com.roland.oroz.h2crud.dto.NewsPostWrapperDto;
 import com.roland.oroz.h2crud.exception.ResourceNotFoundException;
 import com.roland.oroz.h2crud.model.Post;
 import com.roland.oroz.h2crud.repository.PostRepository;
@@ -21,15 +21,21 @@ public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
 
     @Override
-    public Post createPost(PostWrapperDto post) {
-        //TODO change
-        return postRepository.save(Post);
+    public NewsPostWrapperDto createPost(NewsPostWrapperDto postWrapperDto) {
+
+        Post postCreate = new Post();
+        // postUpdate.setId(post.getId());
+        postCreate.setNewstitle(postWrapperDto.getNewsPostDto().getNewstitle());
+        postCreate.setFpost(postWrapperDto.getNewsPostDto().getFpost());
+        postCreate.setCdate(postWrapperDto.getNewsPostDto().getCdate());
+        postRepository.save(postCreate);
+        return postCreate;
     }
 
-    @Override
-    public Post updatePost(PostWrapperDto postWrapperDto) {
+  /*  @Override
+    public NewsPostDto updatePost(NewsPostWrapperDto postWrapperDto) {
         Optional<Post> postDataBase = this.postRepository
-                .findById(postWrapperDto.getNewspost().getId());
+                .findById(postWrapperDto.getNewsPostDtoList().getId());
 
         if(postDataBase.isPresent()) {
             Post postUpdate = postDataBase.get();
@@ -43,7 +49,7 @@ public class PostServiceImpl implements PostService {
             throw new ResourceNotFoundException("Record with id: " +
                     postWrapperDto.getNewspost().getId() + " not found.");
         }
-    }
+    }*/
 
     @Override
     public List<NewsPostDto> getAllPost() {
@@ -95,6 +101,11 @@ public class PostServiceImpl implements PostService {
             throw new ResourceNotFoundException("Record with id: " +
                     postId + " not found.");
         }
+    }
+
+    @Override
+    public NewsPostDto updatePost(NewsPostWrapperDto postWrapperDto) {
+        return null;
     }
 
     @Override

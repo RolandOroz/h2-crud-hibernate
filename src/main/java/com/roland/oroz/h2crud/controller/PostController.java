@@ -1,9 +1,9 @@
 package com.roland.oroz.h2crud.controller;
 
-//import com.roland.oroz.h2crud.dto.PostWrapperDto;
+
 import com.roland.oroz.h2crud.dto.NewsPostDto;
-import com.roland.oroz.h2crud.dto.PostWrapperDto;
-import com.roland.oroz.h2crud.model.Post;
+import com.roland.oroz.h2crud.dto.NewsPostWrapperDto;
+
 import com.roland.oroz.h2crud.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,28 +47,28 @@ public class PostController {
 
 
 
-    @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable long id) {
-        return ResponseEntity
+ /*   @GetMapping("/posts/{id}")
+    public ResponseEntity<NewsPostDto> getPostById(@PathVariable long id) {
+        return (ResponseEntity<NewsPostDto>) ResponseEntity
                 .ok()
                 .body(postService.getPostById(id));
-    }
+    } */
 
     @PostMapping("/posts")
-    public ResponseEntity<Post> createPost(@RequestBody PostWrapperDto post) {
+    public ResponseEntity<NewsPostWrapperDto> createPost(@RequestBody NewsPostWrapperDto postWrapperDto) {
         return ResponseEntity
                 .ok()
-                .body(this.postService.createPost(post));
+                .body(this.postService.createPost(postWrapperDto));
     }
 
 
     @PutMapping("/posts/{id}")
-    public ResponseEntity<Post> updatePost(
+    public ResponseEntity<NewsPostDto> updatePost(
             @PathVariable long id,
-            @RequestBody PostWrapperDto post) {
+            @RequestBody NewsPostWrapperDto postWrapperDto) {
         return ResponseEntity
                 .ok()
-                .body(this.postService.updatePost(post));
+                .body(this.postService.updatePost(postWrapperDto));
     }
 
   /*  @DeleteMapping("/posts/{id}")

@@ -1,5 +1,6 @@
 package com.roland.oroz.h2crud.model;
 
+import com.roland.oroz.h2crud.dto.NewsPostWrapperDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "posts")
-public class Post {
+public class Post extends NewsPostWrapperDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

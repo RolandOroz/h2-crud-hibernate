@@ -2,6 +2,7 @@ package com.roland.oroz.h2crud.controller;
 
 //import com.roland.oroz.h2crud.dto.PostWrapperDto;
 import com.roland.oroz.h2crud.dto.NewsPostDto;
+import com.roland.oroz.h2crud.dto.PostWrapperDto;
 import com.roland.oroz.h2crud.model.Post;
 import com.roland.oroz.h2crud.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class PostController {
     }
 
     @PostMapping("/posts")
-    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+    public ResponseEntity<Post> createPost(@RequestBody PostWrapperDto post) {
         return ResponseEntity
                 .ok()
                 .body(this.postService.createPost(post));
@@ -64,8 +65,7 @@ public class PostController {
     @PutMapping("/posts/{id}")
     public ResponseEntity<Post> updatePost(
             @PathVariable long id,
-            @RequestBody Post post) {
-        post.setId(id);
+            @RequestBody PostWrapperDto post) {
         return ResponseEntity
                 .ok()
                 .body(this.postService.updatePost(post));

@@ -1,6 +1,7 @@
 package com.roland.oroz.h2crud.service;
 
 import com.roland.oroz.h2crud.dto.NewsPostDto;
+import com.roland.oroz.h2crud.dto.PostWrapperDto;
 import com.roland.oroz.h2crud.exception.ResourceNotFoundException;
 import com.roland.oroz.h2crud.model.Post;
 import com.roland.oroz.h2crud.repository.PostRepository;
@@ -20,32 +21,37 @@ public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
 
     @Override
-    public Post createPost(Post post) {
-        return postRepository.save(post);
+    public Post createPost(PostWrapperDto post) {
+        //TODO change
+        return postRepository.save(Post);
     }
 
     @Override
-    public Post updatePost(Post post) {
+    public Post updatePost(PostWrapperDto postWrapperDto) {
         Optional<Post> postDataBase = this.postRepository
-                .findById(post.getId());
+                .findById(postWrapperDto.getNewspost().getId());
 
         if(postDataBase.isPresent()) {
             Post postUpdate = postDataBase.get();
-            postUpdate.setId(post.getId());
-            postUpdate.setNewstitle(post.getNewstitle());
-            postUpdate.setFpost(post.getFpost());
-            postUpdate.setCdate(post.getCdate());
+           // postUpdate.setId(post.getId());
+            postUpdate.setNewstitle(postWrapperDto.getNewspost().getNewstitle());
+            postUpdate.setFpost(postWrapperDto.getNewspost().getFpost());
+            postUpdate.setCdate(postWrapperDto.getNewspost().getCdate());
             postRepository.save(postUpdate);
             return postUpdate;
         }else {
             throw new ResourceNotFoundException("Record with id: " +
-                    post.getId() + " not found.");
+                    postWrapperDto.getNewspost().getId() + " not found.");
         }
     }
 
     @Override
-    public List<Post> getAllPost() {
-        return this.postRepository.findAll();
+    public List<NewsPostDto> getAllPost() {
+        List<Post> list = this.postRepository.findAll();
+        return postRepository.findAll()
+                .stream()
+                .map(this::createNew)
+                .collect(Collectors.toList());
     }
 
     //DTO
@@ -53,13 +59,13 @@ public class PostServiceImpl implements PostService {
     public List<NewsPostDto> getAllNewsPost() {
         return postRepository.findAll()
                 .stream()
-                .map(this::convertEntityToDto)
+                .map(this::createNew)
                 .collect(Collectors.toList());
 
     }
 
     //Entity to DTO
-    private NewsPostDto convertEntityToDto(Post post) {
+    private NewsPostDto createNew(Post post) {
         NewsPostDto newsPostDto = new NewsPostDto();
         newsPostDto.setId(post.getId());
         newsPostDto.setNewstitle(post.getNewstitle());

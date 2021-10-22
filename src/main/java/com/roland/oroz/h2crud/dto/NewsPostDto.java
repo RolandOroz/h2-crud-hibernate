@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class NewsPostDto {
 
     @Id
-    private Long id;
+    private String id;
     private String newstitle;
     private String fpost;
     private LocalDate cdate;

@@ -47,7 +47,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post getPostById(long postId) {
+    public Post getPostById(int postId) {
         Optional<Post> postDataBase = this.postRepository
                 .findById(postId);
 
@@ -60,7 +60,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void deletePost(long postId) {
+    public void deletePost(int postId) {
         Optional<Post> postDataBase = this.postRepository
                 .findById(postId);
 

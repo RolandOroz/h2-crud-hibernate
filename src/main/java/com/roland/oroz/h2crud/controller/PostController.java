@@ -39,7 +39,7 @@ public class PostController {
 
 
     @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable long id) {
+    public ResponseEntity<Post> getPostById(@PathVariable int id) {
         return ResponseEntity
                 .ok()
                 .body(postService.getPostById(id));
@@ -55,7 +55,7 @@ public class PostController {
 
     @PutMapping("/posts/{id}")
     public ResponseEntity<Post> updatePost(
-            @PathVariable long id,
+            @PathVariable int id,
             @RequestBody Post post) {
         post.setId(id);
         return ResponseEntity
@@ -64,7 +64,7 @@ public class PostController {
     }
 
     @DeleteMapping("/posts/{id}")
-    public HttpStatus deletePost(@PathVariable long id) {
+    public HttpStatus deletePost(@PathVariable int id) {
         this.postService.deletePost(id);
         return HttpStatus.OK;
 

@@ -1,7 +1,7 @@
 package com.roland.oroz.h2crud.dto;
 
 
-public class PostWrapperDto {
+public class PostWrapperDto  {
 
     private NewsPostDto newspost;
 

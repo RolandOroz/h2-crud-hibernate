@@ -1,9 +1,11 @@
 package com.roland.oroz.h2crud.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-
 import java.time.LocalDate;
 
 @Getter
@@ -14,10 +16,11 @@ import java.time.LocalDate;
 @Table(name = "posts")
 public class Post {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private int id;
     @Column(name = "newstitle")
     private String newstitle;
     @Column(name = "fpost")

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper
-public interface PostMapper {
+public interface PostMappers {
 
 
     NewsPostDto modelToDto(Post post);

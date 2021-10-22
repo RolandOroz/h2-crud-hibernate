@@ -3,7 +3,7 @@
 //import com.roland.oroz.h2crud.dto.NewsPostDto;
 //import com.roland.oroz.h2crud.model.Post;
 //
-//public class PostMapperImplNoMappStruct implements PostMapper{
+//public class PostMapperImplNoMappStruct implements PostMappers{
 //    @Override
 //    public NewsPostDto modelToDto(Post post) {
 //        NewsPostDto newsPostDto = new NewsPostDto();
